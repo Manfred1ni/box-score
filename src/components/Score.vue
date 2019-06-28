@@ -3,10 +3,10 @@
     <v2-table :data="flattenedScoreboard">
       <v2-table-column label="Teams" prop="team"></v2-table-column>
       <v2-table-column
-        v-for="inning in innings"
-        :key="inning"
-        label="inning"
-        :prop="inning"
+        v-for="inning in 9"
+        v-bind:key="inning"
+        :label="inning.toString()"
+        :prop="inning.toString()"
       ></v2-table-column>
       <v2-table-column label="R" prop="totalRuns"></v2-table-column>
       <v2-table-column label="H" prop="hits"></v2-table-column>
@@ -20,21 +20,23 @@ export default {
     scoreboard: Array
   },
   computed: {
-    flattenedScoreboard: () => {
-      /* eslint-disable */
+    flattenedScoreboard() {
       const flatScoreboard = [];
-      this.scoreboard.map((score) => {
+
+      this.scoreboard.map(score => {
         const newScore = {
           team: score.team,
           hits: score.hits,
           errors: score.errors,
-          innings: Object.keys(score.scores).length
-        }
+          innings: score.scores.length,
+          totalRuns: score.scores.reduce((acc, val) => acc + val)
+        };
         score.scores.forEach((inningResult, index) => {
-          newScore[index+1] = inningResult
+          newScore[index + 1] = inningResult;
         });
         flatScoreboard.push(newScore);
-      })
+      });
+      return flatScoreboard;
     }
   }
 };
