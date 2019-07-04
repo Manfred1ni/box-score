@@ -1,25 +1,28 @@
 <template>
   <div id="app">
-    <main-result :results="game"></main-result>
-    <score :scoreboard="game.scoreboard"></score>
-    <batter-details></batter-details>
+    <div id="wrap">
+      <team-logo teamId="2"></team-logo>
+      <div id="results">
+        <result-title :results="game"></result-title>
+        <scoreboard :scoreboard="game.scoreboard"></scoreboard>
+      </div>
+      <team-logo teamId="1"></team-logo>
+    </div>
   </div>
 </template>
 
 <script>
-import Score from "./components/Score.vue";
-import BatterDetails from "./components/BatterDetails.vue";
-import MainResult from "./components/MainResult.vue";
-import TeamLogo from "./components/MainResult.vue";
+import Scoreboard from "./components/Scoreboard.vue";
+import ResultTitle from "./components/ResultTitle.vue";
+import TeamLogo from "./components/TeamLogo.vue";
 
 import { format } from "date-fns";
 
 export default {
   name: "app",
   components: {
-    Score,
-    BatterDetails,
-    MainResult,
+    Scoreboard,
+    ResultTitle,
     TeamLogo
   },
   data() {
@@ -71,5 +74,17 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+#wrap {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#results {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 </style>

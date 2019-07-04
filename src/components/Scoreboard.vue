@@ -1,16 +1,17 @@
 <template>
-  <div>
-    <v2-table :data="flattenedScoreboard">
-      <v2-table-column label="Teams" prop="team"></v2-table-column>
+  <div id="scoreboard">
+    <v2-table :data="flattenedScoreboard" cell-height="auto">
+      <v2-table-column label="Teams" prop="team" align="left" width="50px"></v2-table-column>
       <v2-table-column
         v-for="inning in 9"
         v-bind:key="inning"
         :label="inning.toString()"
         :prop="inning.toString()"
+        width="25px"
       ></v2-table-column>
-      <v2-table-column label="R" prop="totalRuns"></v2-table-column>
-      <v2-table-column label="H" prop="hits"></v2-table-column>
-      <v2-table-column label="E" prop="errors"></v2-table-column>
+      <v2-table-column label="R" prop="totalRuns" width="25px"></v2-table-column>
+      <v2-table-column label="H" prop="hits" width="25px"></v2-table-column>
+      <v2-table-column label="E" prop="errors" width="25px"></v2-table-column>
     </v2-table>
   </div>
 </template>
